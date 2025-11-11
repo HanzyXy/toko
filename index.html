@@ -1,0 +1,324 @@
+<!--
+Premium Food Portfolio — Single-file HTML (No photos)
+Features:
+- 30 menu items (flavors) with prices
+- Modern 3D card UI using CSS transforms
+- Glitch title effect
+- Particle background (tsparticles CDN)
+- Buy button opens WhatsApp with prefilled message
+- No external images (SVG/icon-only)
+- Beginner-friendly comments for easy customization
+
+Instructions:
+- Edit `WHATSAPP_NUMBER` in the <script> to set your phone number (in international format, e.g. 6281234567890)
+- Edit the `menuItems` array in the <script> to change flavors/prices/descriptions
+- This file is standalone — open in browser to preview
+-->
+
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HanzyyOffc - Premium Food Portfolio</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+
+  <!-- tsParticles CDN for particle background -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1-engine/tsparticles.bundle.min.js"></script>
+
+  <style>
+    :root{
+      --bg1: #070617;
+      --bg2: #0f1226;
+      --accent: #6cffb8;
+      --accent2: #7aa2ff;
+      --glass: rgba(255,255,255,0.04);
+      --card: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{
+      background: linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:#e6eef8; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+    }
+
+    /* Particles canvas will sit behind content */
+    #tsparticles{position:fixed;inset:0;z-index:0}
+
+    /* Header */
+    header{position:relative;z-index:2;padding:36px 24px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:16px;align-items:center}
+    .logo{width:68px;height:68px;border-radius:14px;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;box-shadow:0 6px 30px rgba(0,0,0,0.6), inset 0 -6px 12px rgba(255,255,255,0.02)}
+    .logo svg{width:36px;height:36px;filter:drop-shadow(0 6px 12px rgba(122,162,255,0.12))}
+    .title{line-height:1}
+    .title h1{font-weight:900;margin:0;font-size:20px;letter-spacing:0.4px}
+    .title p{margin:0;font-size:12px;opacity:0.7}
+
+    /* Glitch effect */
+    .glitch{position:relative;display:inline-block;font-weight:900;font-size:32px}
+    .glitch span{position:relative;display:inline-block}
+    .glitch::before, .glitch::after{
+      content:attr(data-text);
+      position:absolute;left:0;top:0;pointer-events:none
+    }
+    .glitch::before{left:2px;text-shadow:-2px 0 var(--accent);clip-path:polygon(0 0,100% 0,100% 33%,0 33%)}
+    .glitch::after{left:-2px;text-shadow:2px 0 var(--accent2);clip-path:polygon(0 67%,100% 67%,100% 100%,0 100%)}
+    /* subtle animation */
+    @keyframes glitchAnim{0%{transform:translateX(0)}20%{transform:translateX(-1px)}40%{transform:translateX(1px)}60%{transform:translateX(-1px)}80%{transform:translateX(1px)}100%{transform:translateX(0)}}
+    .glitch::before,.glitch::after{animation:glitchAnim 2s infinite linear}
+
+    /* Main content */
+    .container{max-width:1180px;margin:24px auto;padding:32px;position:relative;z-index:2}
+    .hero{display:flex;gap:28px;align-items:center}
+    .hero-left{flex:1}
+    .hero-right{width:420px}
+
+    .card-glass{background:var(--glass);backdrop-filter:blur(8px);border-radius:16px;padding:18px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 10px 40px rgba(2,6,23,0.6)}
+
+    .intro h2{margin:0;font-size:28px}
+    .intro p{margin-top:8px;color:rgba(230,238,248,0.74)}
+
+    /* Grid of menu cards */
+    .grid{margin-top:22px;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+
+    .menu-card{position:relative;padding:18px;border-radius:14px;background:var(--card);transform-style:preserve-3d;transition:transform .45s cubic-bezier(.2,.9,.3,1),box-shadow .25s;cursor:pointer;border:1px solid rgba(255,255,255,0.03)}
+    .menu-card:hover{transform:translateY(-12px) rotateX(6deg) rotateY(6deg);box-shadow:0 28px 60px rgba(15,18,38,0.7)}
+    .menu-top{display:flex;align-items:center;justify-content:space-between}
+    .badge{font-size:12px;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
+    .flavor{margin-top:12px;font-weight:700;font-size:16px}
+    .desc{font-size:13px;color:rgba(230,238,248,0.75);margin-top:8px}
+    .price{margin-top:12px;font-weight:900;font-size:18px}
+
+    .actions{display:flex;gap:8px;margin-top:14px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;border:none;background:transparent;color:inherit;font-weight:700;cursor:pointer}
+    .btn-buy{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#07101a;border-radius:12px;padding:10px 14px}
+    .btn-details{border:1px solid rgba(255,255,255,0.04);padding:8px 10px}
+
+    /* Ribbon/label for premium */
+    .ribbon{position:absolute;right:12px;top:12px;padding:6px 10px;border-radius:8px;font-size:11px;background:linear-gradient(90deg,#ffdc7b,#ff8aa6);color:#1b1324;font-weight:800;box-shadow:0 6px 18px rgba(255,140,150,0.08)}
+
+    /* Footer */
+    footer{margin-top:36px;padding:24px;text-align:center;color:rgba(230,238,248,0.6);font-size:13px}
+
+    /* small screens tweaks */
+    @media (max-width:900px){
+      .hero{flex-direction:column-reverse}
+      .hero-right{width:100%}
+      .glitch{font-size:26px}
+    }
+
+    /* small decorative 3D plate using pseudo elements */
+    .plate{width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.03), rgba(0,0,0,0.25));display:flex;align-items:center;justify-content:center}
+
+    /* subtle floating animation */
+    @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+    .float{animation:floaty 6s ease-in-out infinite}
+
+    /* Tiny glitch on price text */
+    .price.glitchy{position:relative}
+    .price.glitchy::after{content:attr(data-text);position:absolute;left:2px;top:0;color:transparent;text-shadow:-2px 0 rgba(108,255,178,0.45);clip-path:polygon(0 0,100% 0,100% 45%,0 45%)}
+  </style>
+</head>
+<body>
+  <div id="tsparticles"></div>
+
+  <header>
+    <div class="brand">
+      <div class="logo float">
+        <!-- simple SVG logo (no photo) -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="6" width="20" height="12" rx="3" fill="#fff" opacity="0.08"/>
+          <path d="M6 10c2-2 6-2 8 0" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+          <circle cx="18" cy="8" r="1.6" fill="#fff" opacity="0.9"/>
+        </svg>
+      </div>
+      <div class="title">
+        <div class="glitch" data-text="HanzyyOffc"> <span>HanzyyOffc</span> </div>
+        <p>Premium Food Portfolio — 30 Rasa • No Photos • Modern 3D</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;align-items:center">
+      <div class="card-glass" style="display:flex;gap:10px;align-items:center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="#9fdfff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/></svg>
+        <div style="font-weight:700">V5 · LEGENDARIS</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <div class="card-glass intro">
+          <h2>Super Premium Menu — 30 Rasa</h2>
+          <p>Desain modern, 3D interactive cards, efek glitch dan partikel. Cocok untuk jualan — tombol BELI akan mengarahkan ke WhatsApp dengan pesan otomatis. Mudah diedit untuk pemula.</p>
+          <div class="grid" id="menuGrid"></div>
+        </div>
+      </div>
+
+      <aside class="hero-right">
+        <div class="card-glass" style="display:flex;flex-direction:column;gap:12px;align-items:center">
+          <div class="plate">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><path d="M12 3c2 3 6 3 6 8s-4 8-6 10c-2-2-6-6-6-10s4-8 6-8z" stroke="#a9f7d3" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(255,255,255,0.02)"/></svg>
+          </div>
+          <div style="text-align:center">
+            <div style="font-weight:800">Premium 3D Catalog</div>
+            <div style="font-size:13px;color:rgba(230,238,248,0.7)">Tanpa foto — ikon & tipografi elegan</div>
+          </div>
+
+          <div style="width:100%;display:flex;gap:8px">
+            <button class="btn btn-buy" id="btn-whatsapp-custom">Buka WhatsApp</button>
+            <button class="btn btn-details" id="btn-download-json">Export JSON</button>
+          </div>
+          <div style="font-size:12px;color:rgba(230,238,248,0.6)">Tip: Klik kartu untuk melihat aksi 3D</div>
+        </div>
+      </aside>
+    </section>
+
+    <footer>
+      © <span id="year"></span> HanzyyOffc · Made with ❤️ • Edit mudah untuk pemula
+    </footer>
+  </main>
+
+  <script>
+    // ====== CONFIG (Edit di sini) ======
+    const WHATSAPP_NUMBER = '6281234567890'; // ganti dengan nomor Anda (format internasional, tanpa '+')
+    // ==================================
+
+    // 30 menu items (flavors) — edit nama, price, tag, desc sesuai kebutuhan
+    const menuItems = [
+      {id:1, name:'Original Cream', price:22000, tag:'Best Seller', desc:'Rasa lembut original classic.'},
+      {id:2, name:'Cokelat Lava', price:24000, tag:'Premium', desc:'Cokelat intens dengan lava di tengah.'},
+      {id:3, name:'Vanilla Cloud', price:23000, tag:'Soft', desc:'Vanilla murni yang harum.'},
+      {id:4, name:'Matcha Bliss', price:26000, tag:'Matcha', desc:'Hijau matcha Jepang autentik.'},
+      {id:5, name:'Strawberry Kiss', price:25000, tag:'Fruity', desc:'Segarnya stroberi asli.'},
+      {id:6, name:'Mango Tango', price:25000, tag:'Tropical', desc:'Mangga matang segar.'},
+      {id:7, name:'Brown Sugar', price:23000, tag:'Trendy', desc:'Brown sugar caramel nikmat.'},
+      {id:8, name:'Oreo Crunch', price:24000, tag:'Fav', desc:'Potongan oreo pada setiap gigitan.'},
+      {id:9, name:'Salted Caramel', price:26000, tag:'Rich', desc:'Gurih manis yang meleleh.'},
+      {id:10, name:'Hazelnut Dream', price:27000, tag:'Nutty', desc:'Aroma hazelnut memikat.'},
+      {id:11, name:'Pistachio Elegance', price:28000, tag:'Exclusive', desc:'Pistachio premium.'},
+      {id:12, name:'Blueberry Glow', price:25000, tag:'Berry', desc:'Blueberry segar penuh rasa.'},
+      {id:13, name:'Lemon Zest', price:22000, tag:'Zesty', desc:'Segar dengan sentuhan asam.'},
+      {id:14, name:'Cinnamon Roll', price:23000, tag:'Warm', desc:'Kayu manis hangat.'},
+      {id:15, name:'Tiramisu Cloud', price:29000, tag:'Luxury', desc:'Tiramisu lembut ala cafe.'},
+      {id:16, name:'Nutella Velvet', price:27000, tag:'Choco', desc:'Krim Nutella yang kaya.'},
+      {id:17, name:'Coconut Breeze', price:24000, tag:'Tropical', desc:'Santan dan kelapa asli.'},
+      {id:18, name:'Blue Lagoon', price:26000, tag:'Exotic', desc:'Perpaduan rasa eksotis.'},
+      {id:19, name:'Espresso Shot', price:21000, tag:'Coffee', desc:'Punch kopi intens.'},
+      {id:20, name:'Affogato Twist', price:30000, tag:'Premium', desc:'Kopi panas, es krim dingin.'},
+      {id:21, name:'Caramel Macchiato', price:26000, tag:'Coffee', desc:'Manis dan berbuih.'},
+      {id:22, name:'Lychee Lush', price:24000, tag:'Fruity', desc:'Manis lembut lychee.'},
+      {id:23, name:'Rose Petal', price:28000, tag:'Floral', desc:'Aroma mawar mewah.'},
+      {id:24, name:'Ginger Snap', price:23000, tag:'Spicy', desc:'Hangat dan berempah.'},
+      {id:25, name:'Ube Purple', price:27000, tag:'Unique', desc:'Ube ungu manis khas.'},
+      {id:26, name:'Black Sesame', price:26000, tag:'Classic', desc:'Wangi biji wijen hitam.'},
+      {id:27, name:'Yuzu Spark', price:25000, tag:'Citrus', desc:'Yuzu segar menyegarkan.'},
+      {id:28, name:'Maple Glaze', price:24000, tag:'Sweet', desc:'Maple syrup otentik.'},
+      {id:29, name:'Cookie Butter', price:26000, tag:'Cookie', desc:'Mentega kue lezat.'},
+      {id:30, name:'Chai Harmony', price:23000, tag:'Spice', desc:'Rempah chai hangat.'}
+    ];
+
+    // helper to format price
+    function formatRupiah(num){return 'Rp' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+
+    // build menu grid
+    const grid = document.getElementById('menuGrid');
+    menuItems.forEach(item=>{
+      const el = document.createElement('div');
+      el.className = 'menu-card card-glass';
+      el.innerHTML = `
+        <div class="ribbon">${item.tag}</div>
+        <div class="menu-top"><div style='display:flex;gap:12px;align-items:center'>
+          <div style='width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center'>
+            <!-- small SVG icon placeholder (no photo) -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M3 12c3-6 9-6 12 0" stroke="#fff" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/></svg>
+          </div>
+          <div style='display:flex;flex-direction:column'>
+            <div style='font-weight:800'>${item.name}</div>
+            <div style='font-size:12px;color:rgba(230,238,248,0.6)'>IDR ${item.id}</div>
+          </div>
+        </div>
+        <div class='badge'>#${item.id}</div></div>
+        <div class='flavor'>${item.name}</div>
+        <div class='desc'>${item.desc}</div>
+        <div class='price glitchy' data-text='${formatRupiah(item.price)}'>${formatRupiah(item.price)}</div>
+        <div class='actions'>
+          <button class='btn btn-buy' data-id='${item.id}'>BELI</button>
+          <button class='btn btn-details' data-id='${item.id}'>DETAIL</button>
+        </div>
+      `;
+
+      // click behaviour
+      el.querySelector('.btn-buy').addEventListener('click',()=> openWhatsAppOrder(item));
+      el.querySelector('.btn-details').addEventListener('click',()=> alert(`${item.name}\n\n${item.desc}\nHarga: ${formatRupiah(item.price)}`));
+      grid.appendChild(el);
+    });
+
+    // WhatsApp order popup / open
+    function openWhatsAppOrder(item){
+      const text = encodeURIComponent(`Halo, saya mau pesan: *${item.name}* (ID: ${item.id}) - Harga ${formatRupiah(item.price)}. Mohon info ketersediaan dan cara pembayaran.`);
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+      window.open(url, '_blank');
+    }
+
+    // top-right WhatsApp button
+    document.getElementById('btn-whatsapp-custom').addEventListener('click',()=>{
+      const text = encodeURIComponent('Halo, saya ingin melihat daftar menu dan promo.');
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`,'_blank');
+    });
+
+    // export JSON of menu
+    document.getElementById('btn-download-json').addEventListener('click',()=>{
+      const blob = new Blob([JSON.stringify(menuItems,null,2)],{type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href=url; a.download='menu-hanzyy.json'; a.click(); URL.revokeObjectURL(url);
+    });
+
+    // set year
+    document.getElementById('year').innerText = new Date().getFullYear();
+
+    // Particles init
+    tsParticles.load("tsparticles", {
+      fullScreen: { zIndex: 0 },
+      fpsLimit: 60,
+      interactivity: {
+        events: { onHover: { enable: true, mode: "repulse" }, onClick: { enable: true, mode: "push" } },
+        modes: { repulse: { distance: 120 }, push: { quantity: 4 } }
+      },
+      particles: {
+        number: { value: 60, density: { enable: true, area: 800 } },
+        color: { value: ["#6cffb8","#7aa2ff","#ffb37a"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.9, random: { enable: true, minimumValue: 0.15 } },
+        size: { value: { min: 1, max: 4 } },
+        move: { enable: true, speed: 0.8, direction: "none", outModes: { default: "bounce" } }
+      },
+      detectRetina: true
+    });
+
+    // tiny tilt based on mouse for 3D illusion
+    document.addEventListener('mousemove',(e)=>{
+      document.querySelectorAll('.menu-card').forEach(card=>{
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left; const y = e.clientY - rect.top;
+        const cx = rect.width/2; const cy = rect.height/2;
+        const dx = (x - cx) / cx; const dy = (y - cy) / cy;
+        card.style.transform = `translateY(-6px) rotateX(${(-dy*6).toFixed(2)}deg) rotateY(${(dx*6).toFixed(2)}deg)`;
+      });
+    });
+
+    // restore hover out
+    document.addEventListener('mouseleave',()=>{
+      document.querySelectorAll('.menu-card').forEach(card=>{card.style.transform='translateY(0) rotateX(0) rotateY(0)'});
+    });
+
+    // small performance-friendly throttle for mouse move
+    let last = 0; document.addEventListener('mousemove', (ev)=>{const now=Date.now(); if(now-last>16){last=now;}});
+
+  </script>
+</body>
+</html>
