@@ -1,404 +1,592 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>HanzyyOffc — Portfolio Premium</title>
+<title>Ultra-Pro 5D • Sari Jahe Premium</title>
+<meta name="description" content="Ultra-Pro 5D demo + lengkap materi sari jahe: bahan, cara pembuatan, manfaat, download & print" />
 
-<!-- font -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-<!-- tsParticles -->
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1-engine/tsparticles.bundle.min.js"></script>
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+/* ----------------------
+   RESET & GLOBAL
+   ---------------------- */
 :root{
-  --bg1:#07101a; --bg2:#0f1630; --accent:#6cffb8; --accent2:#7aa2ff;
-  --glass: rgba(255,255,255,0.04);
-  --muted: rgba(230,238,248,0.7);
-  --card-grad: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  --bg1: #0b1024; --bg2:#1b1f3a; --accent1:#00d0ff; --accent2:#7e5bff;
+  --glass: rgba(255,255,255,0.06); --glass-strong: rgba(255,255,255,0.09);
+  --card-shadow: 0 12px 30px rgba(12,12,20,0.6);
+  --glass-border: rgba(255,255,255,0.12);
+  --text: #eef2ff;
+  --muted: rgba(255,255,255,0.75);
+  --gold: linear-gradient(90deg,#f8b400,#ff6b00,#ff0a6c);
+  --success: #32d583;
 }
 *{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#e6eef8;background:linear-gradient(180deg,var(--bg1),var(--bg2));-webkit-font-smoothing:antialiased;}
-a{color:inherit;text-decoration:none}
-header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(7,16,26,0.6), rgba(7,16,26,0.25));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
-.nav{max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{display:flex;gap:12px;align-items:center}
-.logo{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
-.logo svg{width:26px;height:26px}
-.nav-links{display:flex;gap:14px;align-items:center}
-.nav-links a{padding:8px 12px;border-radius:10px;font-weight:600;color:var(--muted);transition:all .18s}
-.nav-links a:hover{background:rgba(255,255,255,0.03);color:#fff;transform:translateY(-2px)}
-.cta{padding:8px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#07101a;font-weight:800}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:'Poppins',system-ui,Segoe UI,Roboto,Helvetica,sans-serif;
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  background: linear-gradient(135deg,var(--bg1),var(--bg2));
+  background-size:400% 400%;
+  animation: bgMove 16s ease-in-out infinite;
+  overflow-x:hidden;
+}
 
-/* hero */
-#tsparticles{position:fixed;inset:0;z-index:0}
-.hero{max-width:1200px;margin:36px auto;padding:40px 20px;display:flex;gap:28px;align-items:center;position:relative;z-index:2}
-.hero-left{flex:1}
-.kicker{display:inline-flex;gap:10px;align-items:center;padding:8px 12px;background:rgba(255,255,255,0.02);border-radius:999px;font-weight:700}
-.kicker svg{opacity:0.95}
-.hero h1{font-size:40px;margin:18px 0 6px;line-height:1.02}
-.hero p{color:var(--muted);max-width:60%;margin-bottom:18px}
-.hero-actions{display:flex;gap:12px;align-items:center}
-.hero-card{width:420px;border-radius:18px;padding:20px;background:var(--card-grad);border:1px solid rgba(255,255,255,0.04);box-shadow:0 30px 60px rgba(2,6,23,0.6);transform-style:preserve-3d}
+/* animated multi-layer gradient */
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
 
-/* grid */
-.section{max-width:1200px;margin:28px auto;padding:0 20px;position:relative;z-index:2}
-.section h2{font-size:22px;margin-bottom:12px}
-.filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
-.filter-btn{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);cursor:pointer;font-weight:700}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
-.card{background:var(--card-grad);padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);transition:transform .35s,box-shadow .35s;cursor:pointer}
-.card:hover{transform:translateY(-12px) rotateX(4deg) rotateY(4deg);box-shadow:0 30px 60px rgba(0,0,0,0.6)}
-.card .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:700;font-size:12px}
-.card .title{font-weight:800;margin-top:12px}
-.card .desc{color:var(--muted);font-size:13px;margin-top:8px}
-.card .price{margin-top:12px;font-weight:900;font-size:18px}
-.card .actions{display:flex;gap:8px;margin-top:12px}
+/* ----------------------
+   LAYOUT
+   ---------------------- */
+.container{max-width:1180px;margin:0 auto;padding:120px 24px 80px;position:relative}
+nav{
+  position:fixed;left:0;right:0;top:18px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;
+  max-width:1180px;padding:12px 20px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));
+  backdrop-filter: blur(10px);box-shadow:0 6px 25px rgba(2,6,23,0.5);border:1px solid rgba(255,255,255,0.06);z-index:999;
+}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{
+  width:44px;height:44px;border-radius:10px;
+  background: linear-gradient(135deg,#00eaff,#7e5bff);box-shadow:0 10px 30px rgba(125,85,255,0.12);
+  display:flex;align-items:center;justify-content:center;font-weight:800;color:#04102a;
+  transform:translateZ(40px) scale(1); /* give depth */
+}
+.brand h1{font-size:1rem;margin:0;letter-spacing:0.6px}
+.navlinks{display:flex;align-items:center;gap:16px}
+.navlinks a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px 12px;border-radius:10px;transition:all .25s}
+.navlinks a:hover{color:var(--text);transform:translateY(-3px)}
 
-/* modal */
-.modal-backdrop{position:fixed;inset:0;background:rgba(2,8,20,0.6);display:flex;align-items:center;justify-content:center;z-index:60;backdrop-filter:blur(6px)}
-.modal{width:min(760px,94%);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:14px;border:1px solid rgba(255,255,255,0.04)}
+/* Toggle theme */
+.theme-toggle{display:flex;align-items:center;gap:8px}
+.switch{
+  width:56px;height:30px;background:rgba(255,255,255,0.06);border-radius:999px;padding:4px;display:inline-flex;align-items:center;position:relative;border:1px solid rgba(255,255,255,0.06)
+}
+.knob{height:22px;width:22px;border-radius:999px;background:white;transform:translateX(0);transition:transform .25s;border:1px solid rgba(12,12,12,0.08)}
 
-/* testimonials */
-.testi{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:12px}
-.testi .box{padding:16px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
+/* ----------------------
+   OPENING OVERLAY
+   ---------------------- */
+#opening{
+  position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,rgba(2,6,23,0.85),rgba(2,6,23,0.92));z-index:9999;
+  transition:opacity .6s,visibility .6s;backdrop-filter: blur(6px)
+}
+#opening.hidden{opacity:0;visibility:hidden;pointer-events:none}
+#opening .wrap{text-align:center;transform-style:preserve-3d}
+#opening h2{
+  font-size:44px;margin:0 0 10px;background:var(--gold);-webkit-background-clip:text;color:transparent;
+  letter-spacing:2px;text-transform:uppercase
+}
+#opening p{color:rgba(255,255,255,0.85);opacity:.95}
 
-/* footer */
-footer{max-width:1200px;margin:28px auto;padding:18px 20px;color:var(--muted);text-align:center}
+/* ----------------------
+   HERO (parallax layers)
+   ---------------------- */
+.hero{display:flex;gap:40px;align-items:center;padding:80px 0;position:relative}
+.hero-left{flex:1;z-index:3}
+.hero-left h2{font-size:48px;line-height:1.02;margin:0 0 12px;text-shadow:0 8px 30px rgba(8,10,30,0.6)}
+.hero-left p{opacity:.9;font-size:1.05rem;margin-bottom:18px}
+.btn-row{display:flex;gap:12px;align-items:center}
+.btn{
+  border:0;padding:14px 22px;border-radius:999px;font-weight:700;cursor:pointer;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));box-shadow:var(--card-shadow);
+  color:#04102a;letter-spacing:0.3px;transition:transform .22s,box-shadow .22s
+}
+.btn.secondary{
+  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  color:var(--text);border:1px solid rgba(255,255,255,0.06)
+}
+.btn:hover{transform:translateY(-6px);box-shadow:0 18px 60px rgba(0,0,0,0.6)}
 
-/* small */
-@media (max-width:900px){
-  .hero{flex-direction:column-reverse}
-  .hero p{max-width:100%}
-  .hero-card{width:100%}
-  .nav-links{display:none}
+/* HERO RIGHT — layered 3D cards */
+.hero-right{flex:1;display:grid;place-items:center;pointer-events:none}
+.layer-wrap{width:360px;height:360px;position:relative;transform-style:preserve-3d;transition:transform .12s}
+.layer{
+  position:absolute;inset:0;border-radius:20px;padding:20px;background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.06);backdrop-filter: blur(6px);
+  box-shadow: 0 18px 50px rgba(6,8,30,0.6), inset 0 2px 12px rgba(255,255,255,0.02);
+  transform-origin:center;display:flex;flex-direction:column;gap:10px;pointer-events:auto;
+}
+.layer .title{font-weight:700;font-size:1.1rem}
+.layer .meta{font-size:.9rem;color:var(--muted)}
+
+/* different z-depths */
+.layer.l1{transform:translateZ(60px) rotateZ(-6deg)}
+.layer.l2{transform:translateZ(30px) rotateZ(-2deg);left:14px;top:14px}
+.layer.l3{transform:translateZ(0px);left:28px;top:28px}
+
+/* ----------------------
+   SECTION CARDS (cards & recipe)
+   ---------------------- */
+.section-title{font-size:28px;margin:40px 0 18px;background:linear-gradient(90deg,#00eaff,#7e5bff);-webkit-background-clip:text;color:transparent}
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;
+}
+.card{
+  background:rgba(255,255,255,0.04);border-radius:18px;padding:18px;border:1px solid rgba(255,255,255,0.06);
+  box-shadow: inset 6px 6px 20px rgba(255,255,255,0.01), 0 10px 30px rgba(2,6,23,0.55);
+  transition:transform .28s,box-shadow .28s;transform-style:preserve-3d;
+}
+.card:hover{transform:translateY(-14px) scale(1.02);box-shadow:0 28px 80px rgba(4,6,26,0.7)}
+.card h3{margin:0 0 10px}
+.card p{margin:0;color:var(--muted);line-height:1.45}
+
+/* Sari Jahe special styling */
+.recipe{
+  display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:start;margin-top:22px;
+}
+@media(max-width:980px){.recipe{grid-template-columns:1fr}}
+.panel{
+  background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  padding:20px;border-radius:14px;border:1px solid rgba(255,255,255,0.06);
+  box-shadow: var(--card-shadow);
+}
+.ingredients li{margin:8px 0}
+.steps li{margin:10px 0}
+.recipe-hero{
+  height:240px;border-radius:12px;background:
+  radial-gradient(circle at 10% 20%, rgba(255,200,120,0.06), transparent 10%),
+  linear-gradient(135deg,#3a2c6e, #7e5bff);
+  display:flex;flex-direction:column;justify-content:center;padding:20px;color:white;
+  box-shadow:inset 0 8px 40px rgba(0,0,0,0.25);
+}
+
+/* small helper */
+.kv{display:flex;justify-content:space-between;gap:8px;margin-top:12px;font-weight:600}
+.badge{display:inline-block;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.04);font-weight:700}
+
+/* print-friendly */
+@media print{
+  body{background:white;color:#111}
+  nav,#opening,.btn,.theme-toggle{display:none}
+  .container{padding:0}
+  .recipe{grid-template-columns:1fr}
+  .panel{border:none;box-shadow:none;background:transparent}
+}
+
+/* ----------------------
+   DARK / LIGHT THEMES via attribute
+   ---------------------- */
+:root[data-theme='light']{
+  --bg1:#f3f6ff;--bg2:#eef4ff;--text:#08203b;--muted:rgba(8,32,59,0.7);
+  --glass: rgba(4,6,26,0.03);--glass-strong: rgba(4,6,26,0.05);--card-shadow:0 8px 30px rgba(10,18,35,0.08)
 }
 </style>
 </head>
 <body>
 
-<!-- Particles -->
-<div id="tsparticles"></div>
+<!-- OPENING -->
+<div id="opening" aria-hidden="false">
+  <div class="wrap">
+    <h2>WELCOME • ULTRA PRO 5D</h2>
+    <p>Memuat antarmuka premium & materi lengkap Sari Jahe — dibuat otomatis</p>
+  </div>
+</div>
 
 <!-- NAV -->
-<header>
-  <div class="nav">
-    <div class="brand">
-      <div class="logo" aria-hidden>
-        <svg viewBox="0 0 24 24" fill="none" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="6" width="20" height="12" rx="3" fill="white" opacity="0.06"/><path d="M6 10c2-2 6-2 8 0" stroke="white" stroke-width="1.1" stroke-linecap="round"/></svg>
-      </div>
-      <div>
-        <div style="font-weight:800">HanzyyOffc</div>
-        <div style="font-size:12px;color:var(--muted)">Premium Food & Beverage</div>
-      </div>
-    </div>
-
-    <nav class="nav-links">
-      <a href="#about">Tentang</a>
-      <a href="#menu">Menu</a>
-      <a href="#testimoni">Testimoni</a>
-      <a href="#contact" class="cta">Hubungi</a>
-    </nav>
-
+<nav>
+  <div class="brand">
+    <div class="logo">5D</div>
     <div>
-      <a href="#menu" class="cta">Order Sekarang</a>
+      <h1>UltraPro 5D</h1>
+      <div style="font-size:12px;color:rgba(255,255,255,0.65)">Kelas: Premium • Tema: Kantor & Sekolah</div>
     </div>
   </div>
-</header>
 
-<!-- HERO -->
-<main>
-  <section class="hero">
+  <div style="display:flex;align-items:center;gap:14px">
+    <div class="navlinks" style="margin-right:8px">
+      <a href="#home">Home</a>
+      <a href="#features">Fitur</a>
+      <a href="#sari-jahe">Sari Jahe</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div class="theme-toggle" title="Toggle theme" role="button" tabindex="0" aria-label="Toggle theme">
+      <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-right:8px">Tema</div>
+      <div class="switch" id="themeSwitch" aria-hidden="false"><div class="knob" id="themeKnob"></div></div>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="container" id="home">
+
+  <!-- HERO -->
+  <section class="hero" id="features">
     <div class="hero-left">
-      <div class="kicker"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="white" stroke-opacity="0.6" stroke-width="1"/></svg> Premium • 30 Rasa</div>
-      <h1>Portfolio & Katalog Makanan<span style="display:block;color:var(--muted);font-weight:600;font-size:18px;margin-top:8px">Desain modern, elegan, siap jual — tanpa foto</span></h1>
-      <p style="max-width:70%">Kami menyajikan katalog premium 30 rasa dengan layout portfolio yang rapi — cocok untuk promo, toko online, dan portofolio usaha. Tombol pesan langsung terhubung ke WhatsApp.</p>
-      <div class="hero-actions">
-        <a id="quickOrder" class="cta" href="#">Pesan via WhatsApp</a>
-        <a id="downloadMenu" style="padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);font-weight:700;cursor:pointer">Export JSON</a>
+      <h2>Desain 5D • Glassmorphism • Neumorphism • Parallax</h2>
+      <p>Platform demo yang memadukan layer 3D, gradiasi premium, animasi halus, dan sekumpulan materi sari jahe lengkap — cocok untuk presentasi kantor / sekolah.</p>
+      <div class="btn-row">
+        <button class="btn" id="getStarted">Mulai</button>
+        <button class="btn secondary" id="showRecipe">Lihat Sari Jahe</button>
       </div>
+      <div style="margin-top:14px;color:var(--muted)">Tip: Gerakkan mouse di area kanan untuk efek 3D</div>
     </div>
 
-    <aside class="hero-card">
-      <div style="display:flex;align-items:center;gap:14px">
-        <div style="width:80px;height:80px;border-radius:14px;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center">
-          <svg viewBox="0 0 24 24" fill="none" width="36" height="36"><path d="M12 3c2 3 6 3 6 8s-4 8-6 10c-2-2-6-6-6-10s4-8 6-8z" stroke="white" stroke-width="1.1"/></svg>
+    <div class="hero-right" id="parallaxArea" aria-hidden="true">
+      <div class="layer-wrap" id="layerWrap">
+        <div class="layer l1 panel">
+          <div class="title">Glass Panel</div>
+          <div class="meta">Efek reflektif • Kantor premium</div>
         </div>
-        <div>
-          <div style="font-weight:800;font-size:18px">HanzyyOffc</div>
-          <div style="color:var(--muted);font-size:13px">Premium Catalog • Modern UI • No Photos</div>
+        <div class="layer l2 panel">
+          <div class="title">Neumorphism</div>
+          <div class="meta">Efek timbul lembut</div>
+        </div>
+        <div class="layer l3 panel">
+          <div class="title">Gradient Depth</div>
+          <div class="meta">5D parallax • Mouse interactive</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARDS -->
+  <section id="cardsSection">
+    <h3 class="section-title">Fitur Utama</h3>
+    <div class="grid">
+      <div class="card">
+        <h3>5D Glassmorphism</h3>
+        <p>Lapisan kaca premium & blur yang memberikan kesan mewah, banyak dipakai website institusi.</p>
+      </div>
+
+      <div class="card">
+        <h3>Neumorphism</h3>
+        <p>Efek timbul lembut pada tombol & card untuk nuansa modern dan ramah pengguna.</p>
+      </div>
+
+      <div class="card">
+        <h3>Parallax 3D</h3>
+        <p>Layer bergerak mengikuti pointer, memberikan depth layaknya presentasi kantor.</p>
+      </div>
+
+      <div class="card">
+        <h3>PWA Mini</h3>
+        <p>Service worker dibuat otomatis (dari Blob) agar mudah dites: simpan & buka ulang untuk uji offline.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SARI JAHE -->
+  <section id="sari-jahe" style="margin-top:36px">
+    <h3 class="section-title">Sari Jahe — Penjelasan Lengkap</h3>
+
+    <div class="recipe" role="region" aria-labelledby="recipeTitle">
+      <!-- main content -->
+      <div>
+        <div class="panel">
+          <h2 id="recipeTitle" style="margin-top:0">Pengertian & Fungsi</h2>
+          <p style="color:var(--muted)">
+            <strong>Sari jahe</strong> adalah ekstrak rimpang jahe yang mengandung
+            zat aktif seperti gingerol & shogaol — bersifat antioksidan, antiinflamasi, dan
+            memiliki efek hangat. Sari jahe digunakan untuk menghangatkan tubuh,
+            meredakan mual, memperlancar peredaran darah, serta sebagai minuman tradisional.
+          </p>
+
+          <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+            <div class="badge">Antioksidan</div>
+            <div class="badge">Antiinflamasi</div>
+            <div class="badge">Imunitas</div>
+            <div class="badge">Pencernaan</div>
+          </div>
+
+          <hr style="margin:14px 0;border:none;border-top:1px solid rgba(255,255,255,0.04)">
+
+          <h4 style="margin-bottom:8px">Fungsi & Manfaat</h4>
+          <ul style="color:var(--muted);line-height:1.6">
+            <li>Menghangatkan tubuh & melancarkan peredaran darah.</li>
+            <li>Membantu meredakan batuk, flu, dan masuk angin.</li>
+            <li>Mengurangi mual, muntah, dan memperbaiki pencernaan.</li>
+            <li>Memiliki sifat antimikroba & antiinflamasi.</li>
+            <li>Membantu meredakan nyeri otot ringan.</li>
+          </ul>
+
+          <hr style="margin:14px 0;border:none;border-top:1px solid rgba(255,255,255,0.04)">
+
+          <h4>Bahan Pembuatan</h4>
+          <ul class="ingredients" style="color:var(--muted)">
+            <li>250 gram jahe segar (cuci bersih, geprek / parut)</li>
+            <li>500–750 ml air (tergantung selera)</li>
+            <li>3–4 sdm gula merah (atau gula pasir)</li>
+            <li>1 batang serai (geprek) — opsional</li>
+            <li>2 lembar daun pandan — opsional</li>
+            <li>Madu asli (tambahkan saat hangat)</li>
+            <li>Sejumput garam untuk penyedap</li>
+          </ul>
+
+          <h4 style="margin-top:12px">Langkah Pembuatan (Praktis)</h4>
+          <ol class="steps" style="color:var(--muted);line-height:1.6">
+            <li>Parut atau geprek jahe, keluarkan aroma. Jika ingin lebih kuat, gunakan parutan.</li>
+            <li>Rebus air hingga hampir mendidih, masukkan jahe, serai, dan daun pandan.</li>
+            <li>Tambahkan gula merah, kecilkan api, dan rebus 10–15 menit hingga aroma kuat.</li>
+            <li>Saring ke dalam wadah bersih. Tambahkan madu saat hangat sesuai selera.</li>
+            <li>Sajikan hangat atau simpan di kulkas (suhu dingin menambah rasa segar saat diminum dingin).</li>
+          </ol>
+
+          <div style="display:flex;gap:10px;margin-top:14px">
+            <button class="btn" id="printRecipe">Print Recipe</button>
+            <button class="btn secondary" id="downloadIngredients">Download Bahan</button>
+            <button class="btn secondary" id="toggleDetails">Tampilkan Tips & Variasi</button>
+          </div>
+
+          <div id="extraTips" style="margin-top:12px;display:none">
+            <h4>Tips & Variasi</h4>
+            <ul style="color:var(--muted);line-height:1.6">
+              <li>Untuk sari jahe pekat, gunakan perbandingan jahe:air 1:1 (misal 250g jahe:250ml air) lalu encerkan saat disajikan.</li>
+              <li>Variasi: tambahkan perasan lemon atau jeruk nipis untuk rasa segar.</li>
+              <li>Untuk rasa pedas lebih terasa, gunakan parutan jahe tanpa dikupas.</li>
+              <li>Simpan di kulkas hingga 5–7 hari dalam wadah kedap udara.</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Kandungan & Penjelasan -->
+        <div style="display:flex;gap:12px;margin-top:18px;flex-wrap:wrap">
+          <div class="panel" style="flex:1;min-width:220px">
+            <h4>Kandungan Aktif</h4>
+            <p style="color:var(--muted)">Gingerol, shogaol, zingerone — berfungsi sebagai antioksidan & antiperadangan. Kandungan minyak atsiri memberikan aroma dan efek hangat.</p>
+          </div>
+          <div class="panel" style="width:260px;min-width:200px">
+            <h4>Perhatian</h4>
+            <p style="color:var(--muted)">Hindari konsumsi berlebihan pada ibu hamil tanpa konsultasi, atau jika sedang konsumsi obat pengencer darah. Konsultasikan dengan tenaga medis jika ragu.</p>
+          </div>
         </div>
       </div>
 
-      <div style="margin-top:18px;color:var(--muted);font-size:14px">Highlight:</div>
-      <ul style="margin-top:12px;color:var(--muted);line-height:1.8">
-        <li>30 Rasa siap jual</li>
-        <li>Desain responsive & interaktif</li>
-        <li>Integrasi WhatsApp untuk pemesanan</li>
-      </ul>
+      <!-- side panel -->
+      <aside>
+        <div class="recipe-hero panel" style="position:relative;overflow:hidden">
+          <div style="font-weight:800;font-size:20px">Sari Jahe Premium</div>
+          <div style="margin-top:8px;color:rgba(255,255,255,0.9)">Resep praktis & tips untuk tampilan produk herbal premium.</div>
+          <div class="kv" style="margin-top:12px">
+            <div>Waktu</div><div>20–30 menit</div>
+          </div>
+          <div class="kv">
+            <div>Hasil</div><div>~600–800 ml (tergantung encer)</div>
+          </div>
+        </div>
 
-      <div style="margin-top:14px;display:flex;gap:8px">
-        <button id="showAll" style="flex:1;padding:10px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent2));border:none;font-weight:800;color:#07101a;cursor:pointer">Lihat Menu</button>
-        <button id="contactBtn" style="padding:10px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);font-weight:700;cursor:pointer">Kontak</button>
-      </div>
-    </aside>
-  </section>
+        <div style="height:18px"></div>
 
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <h2>Tentang Kami</h2>
-    <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
-      <div style="flex:1;min-width:260px;background:var(--card-grad);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)">
-        <div style="font-weight:800">Visi</div>
-        <div style="color:var(--muted);margin-top:8px">Menyediakan produk makanan & minuman premium dengan tampilan yang menarik, mudah dipesan, dan cocok dipromosikan di sosial media.</div>
-      </div>
-      <div style="flex:1;min-width:260px;background:var(--card-grad);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)">
-        <div style="font-weight:800">Misi</div>
-        <ul style="color:var(--muted);margin-top:8px;line-height:1.8">
-          <li>Kualitas rasa konsisten</li>
-          <li>Desain kemasan & katalog menarik</li>
-          <li>Pelayanan cepat via WhatsApp</li>
-        </ul>
-      </div>
+        <div class="panel">
+          <h4>Elemen Produk</h4>
+          <ul style="color:var(--muted);line-height:1.5">
+            <li>Botol kaca 250ml • label premium</li>
+            <li>QR code untuk nutrisi & cara pakai</li>
+            <li>Kemas ramah lingkungan</li>
+          </ul>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="panel">
+          <h4>Download</h4>
+          <p style="color:var(--muted)">Gunakan tombol untuk mengunduh bahan sebagai file teks (untuk cetak label) atau cetak resep.</p>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="btn" id="downloadLabel">Download Label (TXT)</button>
+            <button class="btn secondary" id="downloadCard">Download Card</button>
+          </div>
+        </div>
+      </aside>
     </div>
   </section>
 
-  <!-- MENU / PORTFOLIO -->
-  <section id="menu" class="section">
-    <h2>Menu & Rasa (30)</h2>
-    <div class="filter-row" id="filters">
-      <button class="filter-btn" data-filter="all">Semua</button>
-      <button class="filter-btn" data-filter="Premium">Premium</button>
-      <button class="filter-btn" data-filter="Fruity">Fruity</button>
-      <button class="filter-btn" data-filter="Coffee">Coffee</button>
-      <button class="filter-btn" data-filter="Unique">Unique</button>
-    </div>
-
-    <div class="grid" id="grid"></div>
-  </section>
-
-  <!-- TESTIMONIAL -->
-  <section id="testimoni" class="section">
-    <h2>Testimoni</h2>
-    <div class="testi">
-      <div class="box">
-        <div style="font-weight:800">Rara • Kafe Bandung</div>
-        <div style="color:var(--muted);margin-top:8px">"Produk enak & packaging rapi. Katalog digital membantu tingkatkan penjualan setiap weekend."</div>
-      </div>
-      <div class="box">
-        <div style="font-weight:800">Adi • Catering</div>
-        <div style="color:var(--muted);margin-top:8px">"Layanan cepat dan menu premium — konsumen suka variasinya."</div>
-      </div>
-      <div class="box">
-        <div style="font-weight:800">Maya • Coffee Shop</div>
-        <div style="color:var(--muted);margin-top:8px">"Layoutnya menarik, mudah dipesan via WhatsApp. Highly recommended!"</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section">
-    <h2>Kontak & Pemesanan</h2>
+  <!-- CONTACT / FOOTER -->
+  <section id="contact" style="margin-top:56px">
+    <h3 class="section-title">Hubungi / Footer</h3>
     <div style="display:flex;gap:18px;flex-wrap:wrap">
-      <div style="flex:1;min-width:260px;background:var(--card-grad);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)">
-        <div style="font-weight:800">Hubungi Kami</div>
-        <div style="color:var(--muted);margin-top:8px">Untuk pemesanan cepat, klik tombol WhatsApp di bawah atau salin nomor kami.</div>
-        <div style="margin-top:12px;display:flex;gap:8px">
-          <a id="waBtn" class="cta" href="#">Chat WhatsApp</a>
-          <button id="copyBtn" style="padding:8px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);cursor:pointer">Salin Nomor</button>
-        </div>
+      <div class="panel" style="flex:1">
+        <h4>Kontak</h4>
+        <p style="color:var(--muted)">Email: info@ultrapro5d.example • Telp: +62 812-3456-7890</p>
       </div>
 
-      <div style="flex:1;min-width:260px;background:var(--card-grad);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)">
-        <div style="font-weight:800">Alamat</div>
-        <div style="color:var(--muted);margin-top:8px">Contoh: Jl. Mawar No.10, Kota — Melayani delivery & take-away</div>
+      <div class="panel" style="width:280px">
+        <h4>About</h4>
+        <p style="color:var(--muted)">Demo interface modern untuk presentasi kantor & sekolah. Semua fitur termasuk resep sari jahe dibuat komprehensif.</p>
       </div>
     </div>
   </section>
 
-  <footer>
-    © <span id="year"></span> HanzyyOffc • Portfolio Premium — Dibuat untuk jualan & promosi
-  </footer>
 </main>
 
-<!-- Modal template (hidden) -->
-<div id="modalRoot" style="display:none"></div>
-
+<!-- small unobtrusive script area -->
 <script>
-/* ====== CONFIG ====== */
-const WHATSAPP_NUMBER = '6282264176976'; // ganti dengan nomormu tanpa +
-const WA_PREFILL = 'Halo, saya ingin pesan: '; // pesan dasar
-/* ==================== */
+/* ----------------------
+   Helper & INIT
+   ---------------------- */
+(function(){
+  // Elements
+  const opening = document.getElementById('opening');
+  const getStarted = document.getElementById('getStarted');
+  const showRecipe = document.getElementById('showRecipe');
+  const printBtn = document.getElementById('printRecipe');
+  const downloadIng = document.getElementById('downloadIngredients');
+  const toggleDetailsBtn = document.getElementById('toggleDetails');
+  const extraTips = document.getElementById('extraTips');
+  const downloadLabel = document.getElementById('downloadLabel');
+  const downloadCard = document.getElementById('downloadCard');
+  const themeSwitch = document.getElementById('themeSwitch');
+  const themeKnob = document.getElementById('themeKnob');
+  const body = document.documentElement;
 
-/* ====== DATA MENU (30 item) ====== */
-const menu = [
-  {id:1,name:'Original Cream',price:22000,tag:'Premium',desc:'Rasa lembut original classic.'},
-  {id:2,name:'Cokelat Lava',price:24000,tag:'Premium',desc:'Cokelat intens dengan lava di tengah.'},
-  {id:3,name:'Vanilla Cloud',price:23000,tag:'Premium',desc:'Vanilla murni yang harum.'},
-  {id:4,name:'Matcha Bliss',price:26000,tag:'Premium',desc:'Hijau matcha Jepang autentik.'},
-  {id:5,name:'Strawberry Kiss',price:25000,tag:'Fruity',desc:'Segarnya stroberi asli.'},
-  {id:6,name:'Mango Tango',price:25000,tag:'Fruity',desc:'Mangga matang segar.'},
-  {id:7,name:'Brown Sugar',price:23000,tag:'Trendy',desc:'Brown sugar caramel nikmat.'},
-  {id:8,name:'Oreo Crunch',price:24000,tag:'Trendy',desc:'Potongan oreo pada setiap gigitan.'},
-  {id:9,name:'Salted Caramel',price:26000,tag:'Premium',desc:'Gurih manis yang meleleh.'},
-  {id:10,name:'Hazelnut Dream',price:27000,tag:'Nutty',desc:'Aroma hazelnut memikat.'},
-  {id:11,name:'Pistachio Elegance',price:28000,tag:'Premium',desc:'Pistachio premium.'},
-  {id:12,name:'Blueberry Glow',price:25000,tag:'Fruity',desc:'Blueberry segar penuh rasa.'},
-  {id:13,name:'Lemon Zest',price:22000,tag:'Citrus',desc:'Segar dengan sentuhan asam.'},
-  {id:14,name:'Cinnamon Roll',price:23000,tag:'Warm',desc:'Kayu manis hangat.'},
-  {id:15,name:'Tiramisu Cloud',price:29000,tag:'Premium',desc:'Tiramisu lembut ala cafe.'},
-  {id:16,name:'Nutella Velvet',price:27000,tag:'Choco',desc:'Krim Nutella yang kaya.'},
-  {id:17,name:'Coconut Breeze',price:24000,tag:'Tropical',desc:'Santan dan kelapa asli.'},
-  {id:18,name:'Blue Lagoon',price:26000,tag:'Exotic',desc:'Perpaduan rasa eksotis.'},
-  {id:19,name:'Espresso Shot',price:21000,tag:'Coffee',desc:'Punch kopi intens.'},
-  {id:20,name:'Affogato Twist',price:30000,tag:'Coffee',desc:'Kopi panas, es krim dingin.'},
-  {id:21,name:'Caramel Macchiato',price:26000,tag:'Coffee',desc:'Manis dan berbuih.'},
-  {id:22,name:'Lychee Lush',price:24000,tag:'Fruity',desc:'Manis lembut lychee.'},
-  {id:23,name:'Rose Petal',price:28000,tag:'Floral',desc:'Aroma mawar mewah.'},
-  {id:24,name:'Ginger Snap',price:23000,tag:'Spicy',desc:'Hangat dan berempah.'},
-  {id:25,name:'Ube Purple',price:27000,tag:'Unique',desc:'Ube ungu manis khas.'},
-  {id:26,name:'Black Sesame',price:26000,tag:'Classic',desc:'Wangi biji wijen hitam.'},
-  {id:27,name:'Yuzu Spark',price:25000,tag:'Citrus',desc:'Yuzu segar menyegarkan.'},
-  {id:28,name:'Maple Glaze',price:24000,tag:'Sweet',desc:'Maple syrup otentik.'},
-  {id:29,name:'Cookie Butter',price:26000,tag:'Cookie',desc:'Mentega kue lezat.'},
-  {id:30,name:'Chai Harmony',price:23000,tag:'Spice',desc:'Rempah chai hangat.'},
-];
+  // close opening after delay & allow instant close on click
+  setTimeout(()=>{ opening.classList.add('hidden') }, 2300);
+  opening.addEventListener('click', ()=> opening.classList.add('hidden'));
 
-/* ====== RENDER GRID ====== */
-const grid = document.getElementById('grid');
-function formatRupiah(n){ return 'Rp' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
-
-function render(items){
-  grid.innerHTML = '';
-  items.forEach(it=>{
-    const el = document.createElement('div');
-    el.className = 'card';
-    el.innerHTML = `
-      <div class="tag">${it.tag}</div>
-      <div class="title">${it.name}</div>
-      <div class="desc">${it.desc}</div>
-      <div class="price">${formatRupiah(it.price)}</div>
-      <div class="actions">
-        <button class="filter-btn" data-action="detail" data-id="${it.id}">Detail</button>
-        <button class="filter-btn" data-action="buy" data-id="${it.id}">BELI</button>
-      </div>
-    `;
-    grid.appendChild(el);
+  // scroll focus to recipe
+  showRecipe.addEventListener('click', ()=> {
+    document.getElementById('sari-jahe').scrollIntoView({behavior:'smooth',block:'center'});
   });
-}
-render(menu);
-
-/* ====== FILTERS ====== */
-document.getElementById('filters').addEventListener('click', e=>{
-  const btn = e.target.closest('.filter-btn');
-  if(!btn) return;
-  const f = btn.getAttribute('data-filter');
-  document.querySelectorAll('#filters .filter-btn').forEach(x=>x.style.opacity=0.6);
-  btn.style.opacity = 1;
-  if(f==='all' || !f){ render(menu); return; }
-  render(menu.filter(i=>i.tag===f));
-});
-
-/* ====== CARD ACTIONS (delegate) ====== */
-grid.addEventListener('click', e=>{
-  const btn = e.target.closest('button');
-  if(!btn) return;
-  const action = btn.getAttribute('data-action');
-  const id = parseInt(btn.getAttribute('data-id'));
-  const item = menu.find(m=>m.id===id);
-  if(action==='buy'){
-    const text = encodeURIComponent(WA_PREFILL + item.name + ' - ' + formatRupiah(item.price));
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
-  } else if(action==='detail'){
-    openModal(item);
-  }
-});
-
-/* ====== MODAL ====== */
-function openModal(item){
-  const root = document.getElementById('modalRoot');
-  root.style.display = 'block';
-  root.innerHTML = `
-    <div class="modal-backdrop" id="modalBackdrop">
-      <div class="modal" role="dialog" aria-modal="true">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div style="font-weight:900">${item.name}</div>
-          <div style="color:var(--muted);font-weight:800">${formatRupiah(item.price)}</div>
-        </div>
-        <div style="margin-top:12px;color:var(--muted)">${item.desc}</div>
-        <div style="margin-top:16px;display:flex;gap:8px">
-          <button id="modalBuy" style="padding:10px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent2));border:none;color:#07101a;font-weight:900;cursor:pointer">Pesan via WhatsApp</button>
-          <button id="modalClose" style="padding:10px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);font-weight:700;cursor:pointer">Tutup</button>
-        </div>
-      </div>
-    </div>
-  `;
-
-  document.getElementById('modalBackdrop').addEventListener('click', (ev)=>{
-    if(ev.target.id === 'modalBackdrop') closeModal();
+  getStarted.addEventListener('click', ()=> {
+    document.getElementById('features').scrollIntoView({behavior:'smooth'});
   });
-  document.getElementById('modalClose').addEventListener('click', closeModal);
-  document.getElementById('modalBuy').addEventListener('click', ()=>{
-    const text = encodeURIComponent(WA_PREFILL + item.name + ' - ' + formatRupiah(item.price));
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
+
+  // print recipe
+  printBtn.addEventListener('click', ()=> window.print());
+
+  // download ingredients as text file
+  downloadIng.addEventListener('click', ()=>{
+    const text = [
+      'Daftar Bahan Sari Jahe (Resep Premium)',
+      '-------------------------------------',
+      '250 gram jahe segar (cuci bersih, geprek / parut)',
+      '500–750 ml air',
+      '3–4 sdm gula merah (atau gula pasir)',
+      '1 batang serai (opsional)',
+      '2 lembar daun pandan (opsional)',
+      'Madu sesuai selera',
+      'Sejumput garam',
+      '',
+      'Langkah singkat: Rebus jahe + air + gula + serai selama 10-15 menit. Saring. Tambah madu saat hangat.'
+    ].join('\\n');
+    const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'bahan_sari_jahe.txt';
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
   });
-}
-function closeModal(){
-  const root = document.getElementById('modalRoot');
-  root.style.display = 'none';
-  root.innerHTML = '';
-}
 
-/* ====== OTHER CONTROLS ====== */
-document.getElementById('showAll').addEventListener('click', ()=>{ window.location.hash = '#menu'; document.querySelector('[data-filter="all"]').click(); });
-document.getElementById('contactBtn').addEventListener('click', ()=>window.location.hash = '#contact');
-document.getElementById('quickOrder').addEventListener('click', ()=>{
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Halo, saya mau lihat menu & promo')}`, '_blank');
-});
-document.getElementById('waBtn').addEventListener('click', ()=>{ window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Halo, saya ingin pesan')}`, '_blank'); });
-document.getElementById('copyBtn').addEventListener('click', ()=>{
-  navigator.clipboard.writeText(WHATSAPP_NUMBER).then(()=>alert('Nomor disalin: ' + WHATSAPP_NUMBER));
-});
-document.getElementById('downloadMenu').addEventListener('click', ()=>{
-  const blob = new Blob([JSON.stringify(menu,null,2)],{type:'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href=url; a.download='menu-hanzyy.json'; a.click();
-  URL.revokeObjectURL(url);
-});
+  // download label (txt) — basic template
+  downloadLabel.addEventListener('click', ()=>{
+    const label = [
+      '=== LABEL PRODUK SARI JAHE PREMIUM ===',
+      'Nama Produk: Sari Jahe Premium',
+      'Netto: 250 ml',
+      'Bahan: Jahe, gula merah, serai, daun pandan, madu (opsional)',
+      'Produsen: UltraPro 5D Demo',
+      'Tanggal produksi: [isi tanggal]',
+      'Cara penyajian: Panaskan, tambahkan madu bila suka.',
+      '',
+      'Catatan: Simpan di kulkas. Konsultasi dokter jika hamil atau sedang konsumsi obat.'
+    ].join('\\n');
+    const blob = new Blob([label], {type:'text/plain;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'label_sari_jahe.txt';
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  });
 
-/* ====== Particles ====== */
-tsParticles.load("tsparticles", {
-  fullScreen: { zIndex: 0 },
-  fpsLimit: 60,
-  interactivity: {
-    events: { onHover: { enable: true, mode: "repulse" }, onClick: { enable: true, mode: "push" } },
-    modes: { repulse: { distance: 120 }, push: { quantity: 4 } }
-  },
-  particles: {
-    number: { value: 60, density: { enable: true, area: 900 } },
-    color: { value: ["#6cffb8","#7aa2ff","#ffb37a"] },
-    shape: { type: "circle" },
-    opacity: { value: 0.9, random: { enable: true, minimumValue: 0.15 } },
-    size: { value: { min: 1, max: 4 } },
-    move: { enable: true, speed: 0.8, direction: "none", outModes: { default: "bounce" } }
-  },
-  detectRetina: true
-});
+  // download card: small html snippet
+  downloadCard.addEventListener('click', ()=>{
+    const htmlCard = [
+      '<div style="font-family:sans-serif;padding:12px;border-radius:8px;border:1px solid #ddd">',
+      '<h3>Sari Jahe Premium</h3>',
+      '<p>Netto: 250 ml • Hangatkan sebelum minum</p>',
+      '<p>Bahan: Jahe, gula merah, serai, daun pandan, madu</p>',
+      '</div>'
+    ].join('');
+    const blob = new Blob([htmlCard], {type:'text/html;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'card_sari_jahe.html';
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  });
 
-/* set year */
-document.getElementById('year').innerText = new Date().getFullYear();
+  // toggle details
+  toggleDetailsBtn.addEventListener('click', ()=>{
+    const show = extraTips.style.display === 'block';
+    extraTips.style.display = show ? 'none' : 'block';
+    toggleDetailsBtn.textContent = show ? 'Tampilkan Tips & Variasi' : 'Sembunyikan Tips & Variasi';
+  });
 
-/* smooth scroll for nav links */
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click', (e)=>{
-    const href = a.getAttribute('href');
-    if(href.length>1){
-      e.preventDefault();
-      document.querySelector(href).scrollIntoView({behavior:'smooth',block:'start'});
+  // THEME toggle with localStorage
+  const preferred = localStorage.getItem('ultra_theme') || 'dark';
+  if(preferred === 'light') applyTheme('light'); else applyTheme('dark');
+
+  themeSwitch.addEventListener('click', ()=>{
+    const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    applyTheme(current === 'light' ? 'dark' : 'light');
+  });
+
+  function applyTheme(name){
+    if(name === 'light'){
+      document.documentElement.setAttribute('data-theme','light');
+      themeKnob.style.transform = 'translateX(26px)';
+      localStorage.setItem('ultra_theme','light');
+    } else {
+      document.documentElement.setAttribute('data-theme','dark');
+      themeKnob.style.transform = 'translateX(0)';
+      localStorage.setItem('ultra_theme','dark');
     }
+  }
+
+  // simple parallax effect for layerWrap
+  const layerWrap = document.getElementById('layerWrap');
+  const parallaxArea = document.getElementById('parallaxArea');
+  parallaxArea.addEventListener('mousemove', (e)=>{
+    const rect = parallaxArea.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    layerWrap.style.transform = `rotateX(${y * 6}deg) rotateY(${x * 12}deg) translateZ(0)`;
   });
-});
+  parallaxArea.addEventListener('mouseleave', ()=> layerWrap.style.transform = 'rotateX(0) rotateY(0)');
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', (ev)=>{
+      ev.preventDefault();
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'center'});
+    })
+  });
+
+  // Register a tiny service worker using Blob to simulate PWA capability
+  if('serviceWorker' in navigator){
+    const swCode = `
+      self.addEventListener('install', event => {
+        event.waitUntil(self.skipWaiting());
+      });
+      self.addEventListener('activate', event => {
+        event.waitUntil(self.clients.claim());
+      });
+      self.addEventListener('fetch', event => {
+        // Basic caching strategy: try network, fallback to cache
+        event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
+      });
+    `;
+    const blob = new Blob([swCode], {type:'application/javascript'});
+    const swUrl = URL.createObjectURL(blob);
+    navigator.serviceWorker.register(swUrl).then(reg => {
+      console.log('Service worker registered (blob). Scope:', reg.scope);
+    }).catch(err => {
+      console.warn('SW register failed', err);
+    });
+  }
+})(); // end IIFE
 </script>
 
 </body>
